@@ -1,67 +1,106 @@
 var app = Vue.createApp({
     data() {
         return {
-        precios: [100.2, 300, 300.5, 400.5],
-        cantidades: [20, 10, 30, 90],
-        productos:[
-            'zapatos',
-            'camisetas',
-            'gorras',
-            'lentes'],
-            precioDolar: 3.42,
-            kwarg:'',
-            full_name: '',
-            direccion: '',
-            comprobante: ''
-        }
-    },
-    computed:{
-         montoPagar() {
-            var total = 0
+        
+        lista_recetas: [
           
-            for (let i = 0; i < this.precios.length; i++){
-                var monto = 
-                    this.precios[i]*this.cantidades[i];
-                    total = total + monto
-            }
-            return total*parseFloat(this.precioDolar);
-         }
-         
-    },
+            {
+            "id": "001",
+            "nombre": "Receta de Tarta de Manzanas sin Azucar",
+            "descripcion": " lorem ipsum dolor sit amet",
+            "chef": "Pedro Santos",
+            "Ingredientes": [
+                {
+                    "id": "i001",
+                    "nombre": "3 manzanas grandes",
+                },
+                {
+                    "id": "i002",
+                    "nombre": "1 rama canela",
+                },
+                {
+                    "id": "i003",
+                    "nombre": "3 huevos",
+                },
+                {
+                    "id": "i004",
+                    "nombre": "3 tazas harina leudante",
+                },
+            ]
+            },
 
-    watch:{                   //propiedad observada
-     
-        full_name: function (nuevo) {
-            this.comprobante = 'Comprobante para : ' + nuevo + ' con dirección en '  + this.direccion
-            
-        },
-        direccion: function (nuevo){
-            this.comprobante = 'Comprobante para : ' + this.full_name + ' con dirección en ' + nuevo
-        },
+            {
+            "id": "002",
+            "nombre": "Receta de Tarta de Cocos",
+            "descripcion": " lorem ipsum dolor sit amet",
+            "chef": "Pedro Santos",
+            "Ingredientes": [
+                {
+                    "id": "i005",
+                    "nombre": "3 cocos grandes",
+                },
+                {
+                    "id": "i006",
+                    "nombre": "1 rama vainilla",
+                },
+                {
+                    "id": "i007",
+                    "nombre": "3 huevos",
+                },
+                {
+                    "id": "i008",
+                    "nombre": "3 tazas harina leudante",
+                },
+            ]
+            },
 
-    },
+            {
+            "id": "003",
+            "nombre": "Receta de Tarta de Chocolate",
+            "descripcion": " lorem ipsum dolor sit amet",
+            "chef": "Pedro Santos",
+            "Ingredientes": [
+                {
+                    "id": "i009",
+                    "nombre": "3 cocos grandes",
+                },
+                {
+                    "id": "i010",
+                    "nombre": "1 rama vainilla",
+                },
+                {
+                    "id": "i011",
+                    "nombre": "3 huevos",
+                },
+                {
+                    "id": "i012",
+                    "nombre": "3 tazas harina leudante",
+                },
+            ]
+            },
+        ],
 
+        search:'',
+        show_add_receta: false,
+        new_receta: 
+            {
+            "id": "",
+            "nombre": "",
+            "descripcion": "",
+            "chef": "",
+            "Ingredientes": []
+           },
+        nuevo_ingrediente: ''
+     } 
+    }, 
     methods: {
-        SumarVentas() {
-            var total = 0;
-          
-            for (let i = 0; i < this.precios.length; i++){
-                var monto = this.precios[i]*this.cantidades[i];
-                total = total + monto
-            }
-            return total;
-         },
-         BuscarProducto: function(){
-            var clave_busqueda = this.kwarg
-            return this.productos.filter(
-                function(valor){
-                   return valor.includes(clave_busqueda)
-                }
-            )
-         },
-     
- 
-         }
+
+        AgregarIngrediente: function() {
+            console.log(this.nuevo_ingrediente);
+            //new_receta.ingredientes.push('nuevo ingrediente')
+        }
+     }
+
     
 })
 
