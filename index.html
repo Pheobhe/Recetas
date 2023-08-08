@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Recetas</title>
+</head>
+<body>
+
+    <div id="appReceta" >
+        <h1>Mi libro de Recetas</h1>
+
+        <div style="width: 50%; float: left;">
+            <h3>Seleccione una receta</h3>
+            <p>
+                <input 
+                  type="text"
+                  placeholder="buscar...">
+            </p>
+            <ul>
+                <li v-for="n in 10">
+                    <a href="#">Asado</a>
+                </li>
+            </ul>
+            <button>Agregar Nueva Receta</button>
+            <p>
+                <input 
+                  type="text"
+                  placeholder="id...">
+            </p>
+            <p>
+                <input 
+                  type="text"
+                  placeholder="Nombre de la receta...">
+            </p>
+            <p>
+                <input 
+                  type="text"
+                  placeholder="Descripcion...">
+            </p>
+            <p>
+                <input 
+                  type="text"
+                  placeholder="Chef...">
+            </p>
+            <p>
+                <input 
+                  type="text"
+                  placeholder="Agregar Ingredientes...">
+            </p>
+            <ul>
+                <li v-for="n in 5">Agregar Ingrediente</li>
+            </ul>
+
+        </div>
+
+
+        <div style="width: 50%; float: right;">
+            <h3>Titulo de la receta</h3>
+
+
+        </div>
+
+    </div>
+    
+    <script src="vue.js"></script>
+    <script src="recetas.js"></script>
+</body>
+</html>
