@@ -15,13 +15,15 @@
             <p>
                 <input 
                   type="text"
-                  placeholder="buscar..."
-                  v-mode ="search">
+                  placeholder="Buscar..."
+                  v-model ="buscar">
             </p>
 
                     <ul>
-                        <li v-for="n in 10">
-                            <a href="#">Asado</a>
+                        <li 
+                        v-for="receta in lista_receta_filtrada"
+                        :key="receta.id">
+                            <a href="#">{{ receta.nombre }}</a>
                         </li>
                     </ul>
 
@@ -67,8 +69,11 @@
             </p>
 
             <ul>
-                <li v-for="n in new_receta.ingredientes">
-                    Agregar Ingrediente
+                <li 
+                    v-For= "ingrediente in new_receta.ingredientes"
+                    :key="ingrediente.id">
+                    {{ingrediente.nombre }}
+                    
                 </li>
             </ul>
 
@@ -85,12 +90,14 @@
             </ul>
             <p style="background-color: cadetblue;">
                 Descripcion de la Receta 
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos dolores voluptatum sapiente ullam quia, 
-            neque ducimus dolor numquam distinctio sint, quis velit inventore! Sit quasi accusantium dignissimos, odio facilis neque.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos dolores voluptatum sapiente ullam quia, 
+                neque ducimus dolor numquam distinctio sint, quis velit inventore! Sit quasi accusantium dignissimos, odio facilis neque.
             </p>
         </div>
 
     </div>
+
+    <p>   </p>
     
     <script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
     <script src="recetas.js"></script>

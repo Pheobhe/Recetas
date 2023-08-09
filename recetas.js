@@ -6,10 +6,10 @@ var app = Vue.createApp({
           
             {
             "id": "001",
-            "nombre": "Receta de Tarta de Manzanas sin Azucar",
-            "descripcion": " lorem ipsum dolor sit amet",
+            "nombre": "Tarta de Manzanas sin Azucar",
+            "descripcion": "lorem ipsum dolor sit amet",
             "chef": "Pedro Santos",
-            "Ingredientes": [
+            "ingredientes": [
                 {
                     "id": "i001",
                     "nombre": "3 manzanas grandes",
@@ -31,10 +31,10 @@ var app = Vue.createApp({
 
             {
             "id": "002",
-            "nombre": "Receta de Tarta de Cocos",
+            "nombre": "Tarta de Cocos",
             "descripcion": " lorem ipsum dolor sit amet",
             "chef": "Pedro Santos",
-            "Ingredientes": [
+            "ingredientes": [
                 {
                     "id": "i005",
                     "nombre": "3 cocos grandes",
@@ -56,10 +56,10 @@ var app = Vue.createApp({
 
             {
             "id": "003",
-            "nombre": "Receta de Tarta de Chocolate",
+            "nombre": "Torta de Chocolate",
             "descripcion": " lorem ipsum dolor sit amet",
             "chef": "Pedro Santos",
-            "Ingredientes": [
+            "ingredientes": [
                 {
                     "id": "i009",
                     "nombre": "3 cocos grandes",
@@ -80,7 +80,7 @@ var app = Vue.createApp({
             },
         ],
 
-        search:'',
+        buscar:'',
         show_add_receta: false,
         new_receta: 
             {
@@ -88,20 +88,39 @@ var app = Vue.createApp({
             "nombre": "",
             "descripcion": "",
             "chef": "",
-            "Ingredientes": []
+            "ingredientes": []
            },
         nuevo_ingrediente: ''
      } 
     }, 
+
+    computed: {
+        lista_receta_filtrada: function() {
+            var self = this
+            return this.lista_recetas.filter(
+                function (value) {
+                    return value.nombre.includes(self.buscar)
+                }
+            )
+        }
+    },
     methods: {
 
         AgregarIngrediente: function() {
-            console.log(this.nuevo_ingrediente);
-            //new_receta.ingredientes.push('nuevo ingrediente')
-        }
-     }
+            var new_date = new Date()
+            var ingrediente ={
+                "id":"i1000" + new_date.getTime(),
+                "nombre": this.nuevo_ingrediente
+            }
 
-    
+            this.new_receta.ingredientes.push(
+                ingrediente
+            )
+            //console.log(this.nuevo_ingrediente);
+           // new_receta.ingredientes.push('nuevo ingrediente')
+        }
+     },
+ 
 })
 
 app.mount('#appReceta')
