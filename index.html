@@ -23,7 +23,11 @@
                         <li 
                         v-for="receta in lista_receta_filtrada"
                         :key="receta.id">
-                            <a href="#">{{ receta.nombre }}</a>
+                            <a 
+                            href="#" 
+                            @click="SeleccionarReceta(receta)">
+                            {{ receta.nombre }}
+                        </a>
                         </li>
                     </ul>
 
@@ -72,26 +76,31 @@
                 <li 
                     v-For= "ingrediente in new_receta.ingredientes"
                     :key="ingrediente.id">
-                    {{ingrediente.nombre }}
+                    {{ingrediente.nombre}}
                     
                 </li>
             </ul>
-
+            <p>
+                <button @click="AgregarReceta()">Guardar</button>
+            </p>
             </div>
         </div>
 
 
-        <div style="width: 50%; float: right;">
-            <h3>Titulo de la receta</h3>
-            <h4>Chef de la Receta</h4>
+        <div 
+            style="width: 50%; float: right;"
+            v-if="receta_seleccionada">
+            <h3>{{ receta_seleccionada.nombre }}</h3>
+            <h4>{{ receta_seleccionada.chef }}</h4>
             <h4>Ingredientes:</h4>
             <ul>
-                <li v-for="n in 5">Ingrediente</li>
+                <li v-for="ingrediente in receta_seleccionada.ingredientes">{{ ingrediente.nombre }}</li>
             </ul>
             <p style="background-color: cadetblue;">
-                Descripcion de la Receta 
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos dolores voluptatum sapiente ullam quia, 
-                neque ducimus dolor numquam distinctio sint, quis velit inventore! Sit quasi accusantium dignissimos, odio facilis neque.
+                {{ receta_seleccionada.descripcion}}
+            </p>
+            <p>
+                <button @click="EliminarReceta()">Eliminar</button>
             </p>
         </div>
 

@@ -6,8 +6,8 @@ var app = Vue.createApp({
           
             {
             "id": "001",
-            "nombre": "Tarta de Manzanas sin Azucar",
-            "descripcion": "lorem ipsum dolor sit amet",
+            "nombre": "Manzanas sin Azucar",
+            "descripcion": "Mezclar con las manos hasta que quede una masa uniforme. Una cosa que me gusta de ésta masa es que lleva la manteca derretida, lo que ahorra un montón de tiempo evitando utilizar la manteca pomada.",
             "chef": "Pedro Santos",
             "ingredientes": [
                 {
@@ -31,8 +31,8 @@ var app = Vue.createApp({
 
             {
             "id": "002",
-            "nombre": "Tarta de Cocos",
-            "descripcion": " lorem ipsum dolor sit amet",
+            "nombre": "Tarta de Coco",
+            "descripcion": "Colocar la harina en un bol grande. Agregar una pizca de sal, la manteca derretida, y un huevo. Esta masa de tarta de coco no lleva azúcar ya que el resto de la tarta será muy dulce, ya es más que suficiente con el dulce de leche",
             "chef": "Pedro Santos",
             "ingredientes": [
                 {
@@ -57,7 +57,7 @@ var app = Vue.createApp({
             {
             "id": "003",
             "nombre": "Torta de Chocolate",
-            "descripcion": " lorem ipsum dolor sit amet",
+            "descripcion": "Cubrir la masa con film y llevar a la heladera a reposar 20 minutos. Si no tienen tiempo pueden saltear éste paso, pero la masa queda mucho más crocante y rica si la dejamos reposar.",
             "chef": "Pedro Santos",
             "ingredientes": [
                 {
@@ -90,11 +90,14 @@ var app = Vue.createApp({
             "chef": "",
             "ingredientes": []
            },
-        nuevo_ingrediente: ''
+        nuevo_ingrediente:'',
+        receta_seleccionada: null
+      
      } 
     }, 
 
     computed: {
+
         lista_receta_filtrada: function() {
             var self = this
             return this.lista_recetas.filter(
@@ -104,6 +107,7 @@ var app = Vue.createApp({
             )
         }
     },
+
     methods: {
 
         AgregarIngrediente: function() {
@@ -118,9 +122,25 @@ var app = Vue.createApp({
             )
             //console.log(this.nuevo_ingrediente);
            // new_receta.ingredientes.push('nuevo ingrediente')
-        }
-     },
- 
+        },
+    
+        AgregarReceta: function() {
+            this.lista_recetas.push(this.new_receta);
+        },
+
+        SeleccionarReceta: function (receta) {
+            this.receta_seleccionada = receta
+           // console.log(this.receta_seleccionada)
+        },
+
+        EliminarReceta: function () {
+            id = this.lista_recetas.indexOf(this.receta_seleccionada)
+            this.lista_recetas.splice(id,1)
+
+           // console.log(this.lista_recetas)
+        },
+    },
+
 })
 
 app.mount('#appReceta')
