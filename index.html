@@ -15,55 +15,100 @@
             <p>
                 <input 
                   type="text"
-                  placeholder="buscar...">
+                  placeholder="Buscar..."
+                  v-model ="buscar">
             </p>
+
+                    <ul>
+                        <li 
+                        v-for="receta in lista_receta_filtrada"
+                        :key="receta.id">
+                            <a 
+                            href="#" 
+                            @click="SeleccionarReceta(receta)">
+                            {{ receta.nombre }}
+                        </a>
+                        </li>
+                    </ul>
+
+            <button @click="show_add_receta = !show_add_receta">
+                Agregar Nueva Receta
+            </button>
+
+            <div v-show="show_add_receta">
+            <p>
+                <input 
+                  type="text"
+                  placeholder="id..."
+                  v-model="new_receta.id">
+            </p>
+            <p>
+                <input 
+                  type="text"
+                  placeholder="Nombre de la receta..."
+                  v-model="new_receta.nombre">
+            </p>
+            <p>
+                <textarea 
+                cols="30"
+                rows="10"
+                placeholder="Descripcion..."
+                v-model="new_receta.descripcion">
+                </textarea>
+            </p>
+
+            <p>
+                <input 
+                  type="text"
+                  placeholder="Chef..."
+                  v-model="new_receta.chef">
+            </p>
+
+            <p>
+                <input 
+                  type="text"
+                  placeholder="Agregar Ingrediente..."
+                  v-model="nuevo_ingrediente"
+                  @keyup.enter="AgregarIngrediente()">
+            </p>
+
             <ul>
-                <li v-for="n in 10">
-                    <a href="#">Asado</a>
+                <li 
+                    v-For= "ingrediente in new_receta.ingredientes"
+                    :key="ingrediente.id">
+                    {{ingrediente.nombre}}
+                    
                 </li>
             </ul>
-            <button>Agregar Nueva Receta</button>
             <p>
-                <input 
-                  type="text"
-                  placeholder="id...">
+                <button @click="AgregarReceta()">Guardar</button>
             </p>
-            <p>
-                <input 
-                  type="text"
-                  placeholder="Nombre de la receta...">
-            </p>
-            <p>
-                <input 
-                  type="text"
-                  placeholder="Descripcion...">
-            </p>
-            <p>
-                <input 
-                  type="text"
-                  placeholder="Chef...">
-            </p>
-            <p>
-                <input 
-                  type="text"
-                  placeholder="Agregar Ingredientes...">
-            </p>
-            <ul>
-                <li v-for="n in 5">Agregar Ingrediente</li>
-            </ul>
-
+            </div>
         </div>
 
 
-        <div style="width: 50%; float: right;">
-            <h3>Titulo de la receta</h3>
-
-
+        <div 
+            style="width: 50%; float: right;"
+            v-if="receta_seleccionada">
+            <h3>{{ receta_seleccionada.nombre }}</h3>
+            <h4>{{ receta_seleccionada.chef }}</h4>
+            <h4>Ingredientes:</h4>
+            <ul>
+                <li v-for="ingrediente in receta_seleccionada.ingredientes">{{ ingrediente.nombre }}</li>
+            </ul>
+            <p style="background-color: cadetblue;">
+                {{ receta_seleccionada.descripcion}}
+            </p>
+            <p>
+                <button @click="EliminarReceta()">Eliminar</button>
+            </p>
         </div>
 
     </div>
+
+    <p>   </p>
     
-    <script src="vue.js"></script>
+    <script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
     <script src="recetas.js"></script>
 </body>
 </html>
